@@ -23,7 +23,6 @@ public class QueryProcessor {
                 if (Integer.parseInt(s) > largestnumber) {
                     largestnumber = Integer.parseInt(s);
                 }
-
             }
             return String.valueOf(largestnumber);
         } else { // TODO extend the programm here
@@ -31,3 +30,5 @@ public class QueryProcessor {
         }
     }
 }
+
+
