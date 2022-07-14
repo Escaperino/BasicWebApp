@@ -1,5 +1,6 @@
 package de.tum.in.ase.eist;
 
+import org.apache.tomcat.util.buf.StringUtils;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,8 +15,7 @@ public class QueryProcessor {
         } else if (query.contains("name")) {
            return "Lucas";
         } else if (query.contains("largest")) {
-            String querystring = query.toString();
-            String[] parts = querystring.split(":");
+            String[] parts = query.split(":");
             String numbers = parts[1];
             String[] newStr = numbers.split(",");
             int largestnumber = 0;
@@ -25,7 +25,16 @@ public class QueryProcessor {
                 }
             }
             return String.valueOf(largestnumber);
-        } else { // TODO extend the programm here
+        } else if(query.contains("plus")){
+            String first = query.substring(query.indexOf("is%20") + 1, query.indexOf("%20plus"));
+            String second = query.substring(query.indexOf("plus%20") + 1, query.indexOf('"'));
+
+            int finalint = Integer.parseInt(first) + Integer.parseInt(second);
+
+            return String.valueOf(finalint);
+
+        }
+        else {
             return "";
         }
     }
